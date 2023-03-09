@@ -25,7 +25,7 @@
 			
 			<main>
 				<xsl:for-each select="restaurante">
-					<a href="<xsl:value-of select="informacion"/>"><h1><xsl:value-of select="nombrerestaurante"/> - <xsl:value-of select="ciudad"/></h1></a>
+					<a href="{restaurante/informacion}"><h1><xsl:value-of select="nombrerestaurante"/> - <xsl:value-of select="ciudad"/></h1></a>
 					<xsl:for-each select="menu">
 						<article class="restaurante">
 							<h3><xsl:value-of select="@tipo"/></h3>

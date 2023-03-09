@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- Asociamos la transformación XSLT -->
-<?xml-stylesheet type="text/xsl" href="restaurante.xls"?>
+<?xml-stylesheet type="text/xsl" href="restaurante.xsl"?>
 
 <reservaeventos>
     <!--   obras de teatro   -->
