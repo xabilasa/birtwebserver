@@ -4,41 +4,47 @@
 <xsl:output encoding="utf-8" method="html" doctype-system="about:legacy-doctype" />
 
 <!--Plantilla festival. Intercalamos código HTML con datos XML-->
-<xsl:template match="/teatro" >
+<xsl:template match="/" >
 
-<html lang="es">
+	<html lang="es">
 
-	<head>
-		<link href="../css/estilo.css" rel="stylesheet" type="text/css" />
-		<meta charset="utf-8"/>
-		<meta name="description" content="Página principal" />
-		<title>titulo de la web</title>
-	</head>
+		<head>
+			<link href="../css/estilo.css" rel="stylesheet" type="text/css" />
+			<meta charset="utf-8"/>
+			<meta name="description" content="Página principal" />
+			<title>titulo de la web</title>
+		</head>
 
-	<body>
-		<header>
-			<img src= "../img/logotipo.png" alt= "Reservas" />
-			<a href="teatro.xml">Teatro</a>
-			<a href="restaurante.xml">Restaurante</a>
-			<a href="festival.xml">Festival</a>
-		</header>
-		
-		<main class="principal">
-			<section class="teatro">
-				<h1>PROXIMAS OBRAS DE TEATRO</h1>
-				<ul>
-					<li>2021-11-24: Todas las hijas</li>
-					<li>2021-11-24: Todas las hijas</li>
-					<li>2021-11-24: Todas las hijas</li>
-				</ul>
-			</section>
-		</main>
+		<body>
+			<header>
+				<img src= "../img/logotipo.png" alt= "Reservas" />
+				<a href="teatro.xml">Teatro</a>
+				<a href="restaurante.xml">Restaurante</a>
+				<a href="festival.xml">Festival</a>
+			</header>
+			
+			<main class="principal">
+				<section class="teatro">
+					<h1>PROXIMAS OBRAS DE TEATRO</h1>
+					<ul>
+						<xsl:for-each select="//teatro">
+							<xsl:sort select="fechahora/@dia" order="descending"/>
+							<xsl:if test="precio&lt;20">
+								<li><u><xsl:value-of select="fechahora/@dia"/>:  <xsl:value-of select="obra"/></u></li>
+							</xsl:if>
+							<xsl:if test="precio>=20">
+								<li><xsl:value-of select="fechahora/@dia"/>:  <xsl:value-of select="obra"/></li>
+							</xsl:if>
+						</xsl:for-each>
+					</ul>
+				</section>
+			</main>
 
-		<footer>
-			<address>&#169; 2020 desarrollado por info@birt.eus</address>
-		</footer>
-	</body>
-</html>
+			<footer>
+				<address>&#169; 2020 desarrollado por info@birt.eus</address>
+			</footer>
+		</body>
+	</html>
 
 </xsl:template>
 </xsl:stylesheet>
