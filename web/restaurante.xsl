@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 <xsl:output encoding="utf-8" method="html" doctype-system="about:legacy-doctype" />
 
 <!--Plantilla festival. Intercalamos código HTML con datos XML-->
@@ -25,20 +25,14 @@
 		
 		<main>
 			<h1>EL CLARETE - VITORIA</h1>
-			<article class="restaurante">
-				<h3>Degustacion</h3>
-				<p>Carpaccio de alcachofa, aceituna negra y ensalada</p>
-				<p>Crema de foie, salsa de vino dulce y quicos</p>
-				<p>Yema de huevo de caserío confitada</p>
-				<p></p>
-			</article>
-			<article class="restaurante">
-				<h3>Degustacion</h3>
-				<p>Carpaccio de alcachofa, aceituna negra y ensalada</p>
-				<p>Crema de foie, salsa de vino dulce y quicos</p>
-				<p>Yema de huevo de caserío confitada</p>
-				<p></p>
-			</article>
+			<xsl:for-each select="menu">
+				<article class="restaurante">
+					<h3><xsl:value-of select="@tipo"/></h3>
+					<xsl:for-each select="plato">
+						<p><xsl:value-of select="."/></p>
+					</xsl:for-each>
+				</article>
+			</xsl:for-each>
 		</main>
 
 		<footer>
