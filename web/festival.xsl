@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--LMSGI04 - Tarea Evaluativa 02 - XSLT
-	Autor: Xabier Lasa Oliver
-	Autoevaluación:
-	https://docs.google.com/document/d/1H9OozjMVZ7M5i1ufSEY7Tgo9RNYR7Bh-6Bb0l90JiPk/edit?usp=sharing 
--->
-
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 <xsl:output encoding="utf-8" method="html" doctype-system="about:legacy-doctype" />
 
