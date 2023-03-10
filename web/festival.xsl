@@ -4,56 +4,61 @@
 <xsl:output encoding="utf-8" method="html" doctype-system="about:legacy-doctype" />
 
 <!--Plantilla festival. Intercalamos código HTML con datos XML-->
-<xsl:template match="/festival" >
+<xsl:template match="/reservaeventos" >
 
-<html lang="es">
+	<html lang="es">
 
-	<head>
-		<link href="../css/estilo.css" rel="stylesheet" type="text/css" />
-		<meta charset="utf-8"/>
-		<meta name="description" content="Página principal" />
-		<title>titulo de la web</title>
-	</head>
+		<head>
+			<link href="../css/estilo.css" rel="stylesheet" type="text/css" />
+			<meta charset="utf-8"/>
+			<meta name="description" content="Página principal" />
+			<title>titulo de la web</title>
+		</head>
 
-	<body>
-		<header>
-			<img src= "../img/logotipo.png" alt= "Reservas" />
-			<a href="teatro.xml">Teatro</a>
-			<a href="restaurante.xml">Restaurante</a>
-			<a href="festival.xml">Festival</a>
-		</header>
-		
-		<section class="festival">
-			<h1>Festivales de rock</h1>
-			<table>
-				<tr>
-					<th>FESTIVAL</th>
-					<th>CONCIERTO</th>
-					<th>FECHA</th>
-					<th>HORA</th>
-					<th>LUGAR</th>
-				</tr>
-				<tr>
-					<td>BBKLive</td>
-					<td>R.E.M</td>
-					<td>2021-05-28</td>
-					<td>22:00:00</td>
-					<td>Kobeta</td>
-				</tr>
-				<tr>
-					<td>Azkena</td>
-					<td>Metallica</td>
-					<td>2021-05-27</td>
-					<td>09:00:00</td>
-					<td>Gasteiz</td>
-				</tr>
-			</table>			
-		</section>
-		<footer>
-			<address>&#169; 2020 desarrollado por info@birt.eus</address>
-		</footer>
-	</body>
-</html>
+		<body>
+			<header>
+				<img src= "../img/logotipo.png" alt= "Reservas" />
+				<a href="teatro.xml">Teatro</a>
+				<a href="restaurante.xml">Restaurante</a>
+				<a href="festival.xml">Festival</a>
+			</header>
+			
+			<section class="festival">
+				<h1>Festivales de rock</h1>
+				<table>
+					<tr>
+						<th>FESTIVAL</th>
+						<th>CONCIERTO</th>
+						<th>FECHA</th>
+						<th>HORA</th>
+						<th>LUGAR</th>
+					</tr>
+
+					<!-- llamamos a la plantilla para que se muestre en las celdas de resultados -->
+					<xsl:apply-templates select="festival/conciertos/concierto" />
+				</table>			
+			</section>
+			<footer>
+				<address>&#169; 2020 desarrollado por info@birt.eus</address>
+			</footer>
+		</body>
+	</html>
+</xsl:template>
+
+<xsl:template match="concierto">
+
+	<!-- Creo una variable para testear los conciertos de rock -->
+	<xsl:variable name="rockers" select="grupo/@tipomusica" />
+	<tr>
+		<!-- Testeo con un if los conciertos de rock para mostrar en las columnas sólo las celdas de las filas coincidentes -->
+		<xsl:if test="$rockers='rock'">
+			<td><xsl:value-of select="../../nombrefesti" /></td>
+			<td><xsl:value-of select="grupo" /></td>
+			<td><xsl:value-of select="fecha" /></td>
+			<td><xsl:value-of select="hora" /></td>
+			<td><xsl:value-of select="carpa" /></td>
+		</xsl:if>
+	</tr>
 
 </xsl:template>
 </xsl:stylesheet>
